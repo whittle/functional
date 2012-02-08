@@ -1,6 +1,7 @@
 require 'rspec/core'
 require 'rspec/expectations'
 require 'rr'
+require 'faker'
 
 begin
   require 'ruby-debug'
