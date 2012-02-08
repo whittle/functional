@@ -1,5 +1,3 @@
-require 'functional'
-
 require 'rspec/core'
 require 'rspec/expectations'
 require 'rr'
