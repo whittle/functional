@@ -1,0 +1,1 @@
+require 'functional/active_model/calculation_prerequisites'

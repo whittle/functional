@@ -5,34 +5,40 @@ require 'spec_helper'
 ActiveRecord::Base.establish_connection $test_db
 ActiveRecord::Migration.verbose = false
 
+# Fake and OtherFake are example classes intended to demonstrate both
+# the public interface and inner workings of
+# ActiveRecord::CalculatedAttribute. Silly names are used to avoid the
+# cognitive overhead of thinking about a useful class at the same
+# time. More driven examples can be found in the
+# ActiveRecord::CalculatedAttribute module itself.
+class Fake < ActiveRecord::Base
+  def self.schema
+    lambda do |t|
+      t.boolean :automatic
+      t.integer :foo
+      t.integer :bar
+      t.integer :baz
+      t.references :other_fake
+    end
+  end
+
+  include ActiveRecord::CalculatedAttribute
+  calculated_attribute(:foo) { 2 }
+  calc_attr(:bar) { |fake| fake.foo + 3 }
+  calc_attr(:baz) { bar / 5 }
+  belongs_to :other_fake
+  calculated_attribute(:other_fake) { OtherFake.new :qux => 8 }
+end
+
+class OtherFake < ActiveRecord::Base
+  def self.schema
+    lambda { |t| t.integer :qux }
+  end
+
+  include ActiveRecord::CalculatedAttribute
+end
+
 module ActiveRecord
-  class ::Fake < Base
-    def self.schema
-      lambda do |t|
-        t.boolean :automatic
-        t.integer :foo
-        t.integer :bar
-        t.integer :baz
-        t.references :other_fake
-      end
-    end
-
-    include CalculatedAttribute
-    calculated_attribute(:foo) { 2 }
-    calc_attr(:bar) { |fake| fake.foo + 3 }
-    calc_attr(:baz) { bar / 5 }
-    belongs_to :other_fake
-    calculated_attribute(:other_fake) { OtherFake.new :qux => 8 }
-  end
-
-  class ::OtherFake < Base
-    def self.schema
-      lambda { |t| t.integer :qux }
-    end
-
-    include CalculatedAttribute
-  end
-
   describe CalculatedAttribute do
     before(:all) { Migration.create_table :fakes, :force => true, &Fake.schema }
     before(:all) { Migration.create_table :other_fakes, :force => true, &OtherFake.schema }
