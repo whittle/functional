@@ -25,4 +25,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rb-fsevent'
   s.add_development_dependency 'guard-bundler'
   s.add_development_dependency 'guard-rspec'
+
+  # Used only for testing specific extensions.
+  s.add_development_dependency 'activerecord'
+  s.add_development_dependency 'sqlite3'
 end
