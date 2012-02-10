@@ -12,12 +12,16 @@ require functional/all.
 
 ## Contents
 
-Array#repeating_take
-BigDecimal#positive?
-BigDecimal#negative?
-BigDecimal#unity_sign
-Kernel#let
-Object#unfold
+Ruby core library extentions:
 
-ActiveModel::CalculationPrerequisites
-ActiveRecord::CalculatedAttribute
+- Array#repeating_take
+- BigDecimal#positive?
+- BigDecimal#negative?
+- BigDecimal#unity_sign
+- Kernel#let
+- Object#unfold
+
+Rails extentions:
+
+- ActiveModel::CalculationPrerequisites
+- ActiveRecord::CalculatedAttribute
