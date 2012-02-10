@@ -1,6 +1,6 @@
 # Copied in part from
 # rspec-rails-2.8.1:lib/rspec/rails/matchers/have_extension.rb
-if  defined? RSpec && defined? ActiveSupport
+if defined?(RSpec) && defined?(ActiveSupport)
   require 'active_support/core_ext/module/aliasing'
 
   module RSpec::Extensions
