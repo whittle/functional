@@ -1,6 +1,7 @@
 require 'active_model'
 require 'functional/active_model/calculation_prerequisites'
 require 'spec_helper'
+require File.expand_path 'active_model', $spec_support_dir
 
 # FooBar is an example class intended to demonstrate both the public
 # interface and inner workings of
@@ -25,42 +26,42 @@ module ActiveModel
 
     context 'without a foo' do
       before { subject.foo = nil }
-      it { should have(1).error_on(:foo) }
-      it { should_not have(:any).errors_on(:baz) }
+      it { should have(1).error_on :foo }
+      it { should_not have(:any).errors_on :baz }
       it { should_not have_all_final_calculation_prerequisites }
     end
 
     context 'with a foo of 5' do
       before { subject.foo = 5 }
-      it { should_not have(:any).errors_on(:foo) }
+      it { should_not have(:any).errors_on :foo }
 
       context 'without a bar' do
         before { subject.bar = nil }
-        it { should have(1).error_on(:bar) }
-        it { should_not have(:any).errors_on(:baz) }
+        it { should have(1).error_on :bar }
+        it { should_not have(:any).errors_on :baz }
         it { should_not have_all_final_calculation_prerequisites }
       end
 
       context 'with a bar of 8' do
         before { subject.bar = 8 }
-        it { should have(1).error_on(:bar) }
-        it { should_not have(:any).errors_on(:baz) }
+        it { should have(1).error_on :bar }
+        it { should_not have(:any).errors_on :baz }
         it { should_not have_all_final_calculation_prerequisites }
       end
 
       context 'with a bar of 13' do
         before { subject.bar = 13 }
-        it { should_not have(:any).errors_on(:bar) }
+        it { should_not have(:any).errors_on :bar }
         it { should have_all_final_calculation_prerequisites }
 
         context 'without a baz' do
           before { subject.baz = nil }
-          it { should have(1).error_on(:baz) }
+          it { should have(1).error_on :baz }
         end
 
         context 'with a baz of 65' do
           before { subject.baz = 65 }
-          it { should_not have(:any).errors_on(:baz) }
+          it { should_not have(:any).errors_on :baz }
           it { should be_valid }
         end
       end

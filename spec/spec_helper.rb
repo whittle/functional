@@ -2,7 +2,9 @@ require 'rspec/core'
 require 'rspec/expectations'
 require 'rr'
 require 'faker'
-require File.expand_path '../support', __FILE__
+
+$spec_support_dir = File.expand_path '../support', __FILE__
+require File.expand_path 'have_extension', $spec_support_dir
 
 begin
   require 'ruby-debug'
