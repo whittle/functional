@@ -3,6 +3,8 @@
 This library is my repository of helpful methods and macros for
 writing more functional code in Ruby and Rails.
 
+[![Build Status](https://secure.travis-ci.org/whittle/functional.png?branch=master)](http://travis-ci.org/whittle/functional)
+
 ## Warning
 
 The separate extensions are intended to be required piecemeal. As
