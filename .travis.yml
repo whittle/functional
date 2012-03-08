@@ -4,5 +4,5 @@ rvm:
   - 1.9.2
   - 1.9.3
 gemfile:
-  Gemfile
-  .gemfiles/activerecord-3.0.4.gemfile
+  - Gemfile
+  - .gemfiles/activerecord-3.0.4.gemfile
