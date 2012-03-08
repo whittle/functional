@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rb-fsevent'
   s.add_development_dependency 'guard-bundler'
   s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'travis-lint'
 
   # Used only for testing specific extensions.
   s.add_development_dependency 'activerecord'
